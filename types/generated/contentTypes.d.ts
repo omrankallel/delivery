@@ -502,17 +502,18 @@ export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
-  collectionName: 'fournisseurs';
+export interface ApiChauffeurChauffeur extends Struct.CollectionTypeSchema {
+  collectionName: 'chauffeurs';
   info: {
-    displayName: 'Fournisseur';
-    pluralName: 'fournisseurs';
-    singularName: 'fournisseur';
+    displayName: 'Chauffeur';
+    pluralName: 'chauffeurs';
+    singularName: 'chauffeur';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
+    address: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -521,10 +522,50 @@ export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
+      'api::chauffeur.chauffeur'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tel: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    username: Schema.Attribute.String;
+  };
+}
+
+export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
+  collectionName: 'fournisseurs';
+  info: {
+    description: '';
+    displayName: 'Fournisseur';
+    pluralName: 'fournisseurs';
+    singularName: 'fournisseur';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    active: Schema.Attribute.Boolean;
+    address: Schema.Attribute.Email;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    fullName: Schema.Attribute.String;
+    lateFee: Schema.Attribute.Decimal;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
       'api::fournisseur.fournisseur'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    tel: Schema.Attribute.String;
+    tel2: Schema.Attribute.String;
+    typeA: Schema.Attribute.BigInteger;
+    typeB: Schema.Attribute.Decimal;
+    typeC: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1077,6 +1118,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::author.author': ApiAuthorAuthor;
       'api::category.category': ApiCategoryCategory;
+      'api::chauffeur.chauffeur': ApiChauffeurChauffeur;
       'api::fournisseur.fournisseur': ApiFournisseurFournisseur;
       'api::global.global': ApiGlobalGlobal;
       'plugin::content-releases.release': PluginContentReleasesRelease;

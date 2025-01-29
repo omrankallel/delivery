@@ -4,7 +4,8 @@
   "info": {
     "singularName": "fournisseur",
     "pluralName": "fournisseurs",
-    "displayName": "Fournisseur"
+    "displayName": "Fournisseur",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -19,6 +20,30 @@
     },
     "email": {
       "type": "email"
+    },
+    "address": {
+      "type": "email"
+    },
+    "tel": {
+      "type": "string"
+    },
+    "tel2": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "typeA": {
+      "type": "biginteger"
+    },
+    "typeB": {
+      "type": "decimal"
+    },
+    "typeC": {
+      "type": "decimal"
+    },
+    "lateFee": {
+      "type": "decimal"
     }
   }
 }
