@@ -1,7 +1,6 @@
 ############################
 # OS X
 ############################
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -10,18 +9,14 @@ Icon
 .Trashes
 ._*
 
-
 ############################
 # Linux
 ############################
-
 *~
-
 
 ############################
 # Windows
 ############################
-
 Thumbs.db
 ehthumbs.db
 Desktop.ini
@@ -31,11 +26,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-
 ############################
 # Packages
 ############################
-
 *.7z
 *.csv
 *.dat
@@ -60,25 +53,22 @@ $RECYCLE.BIN/
 *.out
 *.pid
 
-
 ############################
 # Logs and databases
 ############################
-
 .tmp
 *.log
 *.sql
 *.sqlite
 *.sqlite3
 
-
 ############################
 # Misc.
 ############################
-
 *#
 ssl
 .idea
+.vscode
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
@@ -86,29 +76,32 @@ public/uploads/*
 ############################
 # Node.js
 ############################
-
 lib-cov
 lcov.info
 pids
 logs
 results
-node_modules
+node_modules/
 .node_history
+package-lock.json
+yarn.lock
 
 ############################
 # Tests
 ############################
-
 testApp
 coverage
 
 ############################
 # Strapi
 ############################
-
 .env
+.env.production
+.env.development
+.env.local
 license.txt
 exports
-*.cache
-build
+.cache/
+build/
 .strapi-updater.json
+dist/
