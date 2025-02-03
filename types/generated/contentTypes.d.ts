@@ -547,7 +547,7 @@ export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
   };
   attributes: {
     active: Schema.Attribute.Boolean;
-    address: Schema.Attribute.Email;
+    address: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -563,7 +563,7 @@ export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     tel: Schema.Attribute.String;
     tel2: Schema.Attribute.String;
-    typeA: Schema.Attribute.BigInteger;
+    typeA: Schema.Attribute.Decimal;
     typeB: Schema.Attribute.Decimal;
     typeC: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;

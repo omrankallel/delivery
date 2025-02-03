@@ -21,9 +21,6 @@
     "email": {
       "type": "email"
     },
-    "address": {
-      "type": "email"
-    },
     "tel": {
       "type": "string"
     },
@@ -34,7 +31,7 @@
       "type": "boolean"
     },
     "typeA": {
-      "type": "biginteger"
+      "type": "decimal"
     },
     "typeB": {
       "type": "decimal"
@@ -44,6 +41,9 @@
     },
     "lateFee": {
       "type": "decimal"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }
