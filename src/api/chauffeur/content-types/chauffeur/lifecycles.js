@@ -12,7 +12,22 @@ module.exports = {
       provider: 'local',
       role: await getRoleId('Chauffeur'),
     });
-  }
+  },
+  async afterDelete(event) {
+    const email = event.result.email;
+
+    // Vérifier si l'utilisateur existe avant de le supprimer
+    let existingUser = await strapi.entityService.findMany("plugin::users-permissions.user", {
+      filters: { email:email },
+    });
+
+    if (existingUser.length > 0) {
+      const userId = existingUser[0].id;
+
+      await strapi.entityService.delete("plugin::users-permissions.user", userId);
+      console.log(`Utilisateur supprimé : ${email}`);
+    }
+  },
 }
 
 async function getRoleId(roleName) {
