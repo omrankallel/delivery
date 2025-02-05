@@ -5,7 +5,7 @@ module.exports = {
     console.log("**********************");
     let user = await strapi.plugins['users-permissions'].services.user.add({
       blocked: false,
-      confirmed: true,
+      confirmed: false,
       username: event.result.username,
       email: event.result.email,
       password: '123456',
