@@ -4,7 +4,7 @@ module.exports = {
     console.log(event.result);
     console.log("**********************");
     let user = await strapi.plugins['users-permissions'].services.user.add({
-      blocked: false,
+      blocked: event.result.active,
       confirmed: false,
       username: event.result.username,
       email: event.result.email,
