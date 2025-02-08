@@ -432,6 +432,37 @@ export interface ApiChauffeurChauffeur extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiColiColi extends Struct.CollectionTypeSchema {
+  collectionName: 'coliss';
+  info: {
+    displayName: 'Colis';
+    pluralName: 'coliss';
+    singularName: 'coli';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateLivraison: Schema.Attribute.String;
+    description: Schema.Attribute.String;
+    fournisseur: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::fournisseur.fournisseur'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::coli.coli'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    qte: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
   collectionName: 'fournisseurs';
   info: {
@@ -446,6 +477,7 @@ export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
   attributes: {
     active: Schema.Attribute.Boolean;
     address: Schema.Attribute.String;
+    coli: Schema.Attribute.Relation<'oneToOne', 'api::coli.coli'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1014,6 +1046,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::chauffeur.chauffeur': ApiChauffeurChauffeur;
+      'api::coli.coli': ApiColiColi;
       'api::fournisseur.fournisseur': ApiFournisseurFournisseur;
       'api::global.global': ApiGlobalGlobal;
       'plugin::content-releases.release': PluginContentReleasesRelease;

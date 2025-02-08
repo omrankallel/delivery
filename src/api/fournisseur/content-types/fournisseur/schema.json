@@ -44,6 +44,12 @@
     },
     "address": {
       "type": "string"
+    },
+    "coli": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::coli.coli",
+      "mappedBy": "fournisseur"
     }
   }
 }

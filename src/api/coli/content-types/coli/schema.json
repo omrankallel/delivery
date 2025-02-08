@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coliss",
+  "info": {
+    "singularName": "coli",
+    "pluralName": "coliss",
+    "displayName": "Colis"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dateLivraison": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "fournisseur": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fournisseur.fournisseur",
+      "inversedBy": "coli"
+    },
+    "qte": {
+      "type": "integer"
+    }
+  }
+}
