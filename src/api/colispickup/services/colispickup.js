@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * coli service
+ * colispickup service
  */
 
 const { createCoreService } = require('@strapi/strapi').factories;
 
-module.exports = createCoreService('api::coli.coli');
+module.exports = createCoreService('api::colispickup.colispickup');

@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "destinataires",
+  "info": {
+    "singularName": "destinataire",
+    "pluralName": "destinataires",
+    "displayName": "Destinataire"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "fullName": {
+      "type": "string"
+    },
+    "tel": {
+      "type": "string"
+    },
+    "tel2": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "string"
+    },
+    "colis_destinateur": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::colis-destinateur.colis-destinateur",
+      "mappedBy": "destinataire"
+    }
+  }
+}

@@ -31,6 +31,12 @@
       "type": "boolean",
       "default": true,
       "required": false
+    },
+    "colispickup": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::colispickup.colispickup",
+      "mappedBy": "chauffeur"
     }
   }
 }

@@ -412,6 +412,10 @@ export interface ApiChauffeurChauffeur extends Struct.CollectionTypeSchema {
   attributes: {
     active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     address: Schema.Attribute.String;
+    colispickup: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::colispickup.colispickup'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -432,31 +436,137 @@ export interface ApiChauffeurChauffeur extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiColiColi extends Struct.CollectionTypeSchema {
-  collectionName: 'coliss';
+export interface ApiColisDestinateurColisDestinateur
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'colis_destinateurs';
   info: {
-    displayName: 'Colis';
-    pluralName: 'coliss';
-    singularName: 'coli';
+    displayName: 'ColisDestinateur';
+    pluralName: 'colis-destinateurs';
+    singularName: 'colis-destinateur';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
+    bordereau: Schema.Attribute.String;
+    colispickup: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::colispickup.colispickup'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    dateLivraison: Schema.Attribute.String;
-    description: Schema.Attribute.String;
-    fournisseur: Schema.Attribute.Relation<
+    descriptionDTentative: Schema.Attribute.Text;
+    descriptionPTentative: Schema.Attribute.Text;
+    descriptionTTentative: Schema.Attribute.Text;
+    destinataire: Schema.Attribute.Relation<
       'oneToOne',
+      'api::destinataire.destinataire'
+    >;
+    etatDTentative: Schema.Attribute.Enumeration<
+      ['Livr\u00E9', 'Annuler', 'Ne r\u00E9pond pas', 'Rendez vous', 'Autre']
+    >;
+    etatPTentative: Schema.Attribute.Enumeration<
+      ['Livr\u00E9', 'Annuler', 'Ne r\u00E9pond pas', 'Rendez vous', 'Autre']
+    >;
+    etatTTentative: Schema.Attribute.Enumeration<
+      ['Livr\u00E9', 'Annuler', 'Ne r\u00E9pond pas', 'Rendez vous', 'Autre']
+    >;
+    frajil: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::colis-destinateur.colis-destinateur'
+    > &
+      Schema.Attribute.Private;
+    prixdestinateur: Schema.Attribute.Decimal;
+    prixexpediteur: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    QRcode: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiColispickupColispickup extends Struct.CollectionTypeSchema {
+  collectionName: 'colispickups';
+  info: {
+    displayName: 'Colispickup';
+    pluralName: 'colispickups';
+    singularName: 'colispickup';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    chauffeur: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::chauffeur.chauffeur'
+    >;
+    colis_destinateurs: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::colis-destinateur.colis-destinateur'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dateLivraison: Schema.Attribute.Date;
+    depot: Schema.Attribute.Enumeration<['Tunis', 'Sfax']>;
+    description: Schema.Attribute.Text;
+    facture: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    fournisseur: Schema.Attribute.Relation<
+      'manyToOne',
       'api::fournisseur.fournisseur'
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::coli.coli'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::colispickup.colispickup'
+    > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    qte: Schema.Attribute.Integer;
+    quantity: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDestinataireDestinataire
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'destinataires';
+  info: {
+    displayName: 'Destinataire';
+    pluralName: 'destinataires';
+    singularName: 'destinataire';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    address: Schema.Attribute.String;
+    colis_destinateur: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::colis-destinateur.colis-destinateur'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    fullName: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::destinataire.destinataire'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tel: Schema.Attribute.String;
+    tel2: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -477,7 +587,10 @@ export interface ApiFournisseurFournisseur extends Struct.CollectionTypeSchema {
   attributes: {
     active: Schema.Attribute.Boolean;
     address: Schema.Attribute.String;
-    coli: Schema.Attribute.Relation<'oneToOne', 'api::coli.coli'>;
+    colispickups: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::colispickup.colispickup'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1046,7 +1159,9 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
       'api::chauffeur.chauffeur': ApiChauffeurChauffeur;
-      'api::coli.coli': ApiColiColi;
+      'api::colis-destinateur.colis-destinateur': ApiColisDestinateurColisDestinateur;
+      'api::colispickup.colispickup': ApiColispickupColispickup;
+      'api::destinataire.destinataire': ApiDestinataireDestinataire;
       'api::fournisseur.fournisseur': ApiFournisseurFournisseur;
       'api::global.global': ApiGlobalGlobal;
       'plugin::content-releases.release': PluginContentReleasesRelease;

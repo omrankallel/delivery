@@ -1,0 +1,81 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colis_destinateurs",
+  "info": {
+    "singularName": "colis-destinateur",
+    "pluralName": "colis-destinateurs",
+    "displayName": "ColisDestinateur"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "destinataire": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::destinataire.destinataire",
+      "inversedBy": "colis_destinateur"
+    },
+    "QRcode": {
+      "type": "string"
+    },
+    "etatPTentative": {
+      "type": "enumeration",
+      "enum": [
+        "Livré",
+        "Annuler",
+        "Ne répond pas",
+        "Rendez vous",
+        "Autre"
+      ]
+    },
+    "etatDTentative": {
+      "type": "enumeration",
+      "enum": [
+        "Livré",
+        "Annuler",
+        "Ne répond pas",
+        "Rendez vous",
+        "Autre"
+      ]
+    },
+    "etatTTentative": {
+      "type": "enumeration",
+      "enum": [
+        "Livré",
+        "Annuler",
+        "Ne répond pas",
+        "Rendez vous",
+        "Autre"
+      ]
+    },
+    "prixexpediteur": {
+      "type": "decimal"
+    },
+    "prixdestinateur": {
+      "type": "decimal"
+    },
+    "frajil": {
+      "type": "boolean"
+    },
+    "descriptionPTentative": {
+      "type": "text"
+    },
+    "descriptionDTentative": {
+      "type": "text"
+    },
+    "descriptionTTentative": {
+      "type": "text"
+    },
+    "colispickup": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::colispickup.colispickup",
+      "inversedBy": "colis_destinateurs"
+    },
+    "bordereau": {
+      "type": "string"
+    }
+  }
+}

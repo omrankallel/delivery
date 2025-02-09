@@ -1,9 +1,9 @@
 'use strict';
 
 /**
- * coli router
+ * colispickup router
  */
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::coli.coli');
+module.exports = createCoreRouter('api::colispickup.colispickup');

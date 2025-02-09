@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colispickups",
+  "info": {
+    "singularName": "colispickup",
+    "pluralName": "colispickups",
+    "displayName": "Colispickup"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "depot": {
+      "type": "enumeration",
+      "enum": [
+        "Tunis",
+        "Sfax"
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "fournisseur": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::fournisseur.fournisseur",
+      "inversedBy": "colispickups"
+    },
+    "dateLivraison": {
+      "type": "date"
+    },
+    "facture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "chauffeur": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::chauffeur.chauffeur",
+      "inversedBy": "colispickup"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "colis_destinateurs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::colis-destinateur.colis-destinateur",
+      "mappedBy": "colispickup"
+    }
+  }
+}
