@@ -4,7 +4,8 @@
   "info": {
     "singularName": "colispickup",
     "pluralName": "colispickups",
-    "displayName": "Colispickup"
+    "displayName": "Colispickup",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -31,14 +32,15 @@
       "type": "date"
     },
     "facture": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "chauffeur": {
       "type": "relation",
@@ -54,6 +56,18 @@
       "relation": "oneToMany",
       "target": "api::colis-destinateur.colis-destinateur",
       "mappedBy": "colispickup"
+    },
+    "etat": {
+      "type": "enumeration",
+      "enum": [
+        "En cours",
+        "Terminé",
+        "Clôturé"
+      ],
+      "default": "En cours"
+    },
+    "datePickup": {
+      "type": "datetime"
     }
   }
 }

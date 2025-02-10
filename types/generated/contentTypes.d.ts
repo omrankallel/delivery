@@ -492,6 +492,7 @@ export interface ApiColisDestinateurColisDestinateur
 export interface ApiColispickupColispickup extends Struct.CollectionTypeSchema {
   collectionName: 'colispickups';
   info: {
+    description: '';
     displayName: 'Colispickup';
     pluralName: 'colispickups';
     singularName: 'colispickup';
@@ -512,8 +513,13 @@ export interface ApiColispickupColispickup extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dateLivraison: Schema.Attribute.Date;
+    datePickup: Schema.Attribute.DateTime;
     depot: Schema.Attribute.Enumeration<['Tunis', 'Sfax']>;
     description: Schema.Attribute.Text;
+    etat: Schema.Attribute.Enumeration<
+      ['En cours', 'Termin\u00E9', 'Cl\u00F4tur\u00E9']
+    > &
+      Schema.Attribute.DefaultTo<'En cours'>;
     facture: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
